@@ -1,0 +1,32 @@
+<!-- used material design on title to add blue banner on it -->
+<mat-toolbar color="primary">
+    <h2>My favorite Players</h2>
+  </mat-toolbar>
+
+  <div class="container">
+    <mat-card *ngFor="let player of players; let i = index" class="player-card">
+      <mat-card-content>
+        <p>{{ player.name }}</p>
+        <button mat-icon-button color="primary" (click)="editPlayer(i)">
+            <!-- icons for edit and delete are created based on the words inputed below-->
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletePlayer(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+<h3>Add New Player</h3>
+<div>
+  <label>Player name: </label>
+  <input id="newPlayerName" [(ngModel)]="newPlayerName" placeholder="name">
+  <button (click)="addPlayer()">Add</button>
+</div>
+
+<div *ngIf="editingIndex !== -1">
+  <h3>Edit Player</h3>
+  <label for="editPlayerName">Player name: </label>
+  <input id="editPlayerName" [(ngModel)]="editPlayerName" placeholder="name">
+  <button (click)="updatePlayer()">Update</button>
+</div>
